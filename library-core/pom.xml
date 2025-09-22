@@ -69,6 +69,50 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>com.github.spotbugs</groupId>
+                <artifactId>spotbugs-maven-plugin</artifactId>
+                <version>4.9.6.0</version>
+                <configuration>
+                    <effort>Max</effort>
+                    <threshold>Low</threshold>
+                    <xmlOutput>false</xmlOutput>
+                    <htmlOutput>true</htmlOutput>
+                    <outputEncoding>UTF-8</outputEncoding>
+                </configuration>
+                <executions>
+                    <execution>
+                    <phase>verify</phase>
+                    <goals>
+                        <goal>spotbugs</goal>
+                    </goals>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                    <groupId>com.github.spotbugs</groupId>
+                    <artifactId>spotbugs</artifactId>
+                    <version>4.9.6</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
         </plugins>
     </build>
+
+    <reporting>
+        <plugins>
+            <plugin>
+            <groupId>com.github.spotbugs</groupId>
+            <artifactId>spotbugs-maven-plugin</artifactId>
+            <version>4.9.6.0</version>
+            <configuration>
+                <effort>Max</effort>
+                <threshold>Low</threshold>
+                <xmlOutput>false</xmlOutput>
+                <htmlOutput>true</htmlOutput>
+                <outputEncoding>UTF-8</outputEncoding>
+            </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
 </project>
