@@ -5,4 +5,12 @@ We’re testing the intent of Item 1 — static factories provide controlled ins
 2. library-core/src/test/java/com/library/core/MemberTest.java
 
 Builder pattern (Item 2) shines when you have optional parameters and want readable, fluent construction.
-We enforce required fields at build-time, not construction-time — safer and clearer. 
+We enforce required fields at build-time, not construction-time — safer and clearer.
+
+3. library-core/src/test/java/com/library/service/LibraryTest.java
+
+Item 3 recommends enum singleton because: 
+
+Concise, serialization-safe, thread-safe, and reflection-safe
+Prevents multiple instantiation even under serialization or reflection attacks
+JVM guarantees singleton-ness
