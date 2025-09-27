@@ -1,10 +1,12 @@
 package com.library.util;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.regex.Pattern;
 
 class ValidationUtilTest {
 
@@ -40,5 +42,31 @@ class ValidationUtilTest {
                   .isInstanceOf(AssertionError.class)
                   .hasMessage("Utility class")
           );
+    }
+
+    @Test
+    void shouldReuseCompiledEmailPattern() {
+        // Item 6: Avoid unnecessary object creation — cache expensive immutable objects
+        // Pattern is thread-safe and immutable — safe to reuse
+        // We expose internal pattern for testing via package-private method
+
+        Pattern pattern1 = ValidationUtil.getEmailPatternForTesting();
+        Pattern pattern2 = ValidationUtil.getEmailPatternForTesting();
+
+        // Same instance reused — no new Pattern created on each call
+        assertThat(pattern1).isSameAs(pattern2);
+    }
+
+    @Test
+    @Disabled("Performance demo only")
+    void demonstratePatternReusePerformance() {
+        String email = "user@example.com";
+        long start = System.nanoTime();
+        for (int i = 0; i < 100_000; i++) {
+            ValidationUtil.isValidEmail(email);
+        }
+        long duration = System.nanoTime() - start;
+        System.out.println("Validation time (cached): " + duration / 1_000_000 + " ms");
+        // Compare to uncached version — would be 10-100x slower
     }
 }

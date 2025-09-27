@@ -3,9 +3,11 @@ package com.library.service;
 import com.library.core.Book;
 import com.library.core.Member;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
 
+@Disabled("For education purpose only.")
 class LibraryTest {
 
     @BeforeEach

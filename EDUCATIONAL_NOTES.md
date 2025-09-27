@@ -28,4 +28,9 @@ Item 5 states:
 
 Static utility classes and singletons are inappropriate for classes whose behavior depends on state.
 The Library has mutable state (catalog, members) — so it should not be a singleton.
-DI gives us testability, reusability, and configurability. 
+DI gives us testability, reusability, and configurability.
+
+6. library-core/src/test/java/com/library/util/ValidationUtilTest.java
+
+java.util.regex.Pattern is immutable and thread-safe — perfect candidate for reuse (Item 6).
+Compiling a regex is expensive; matching is cheap. 

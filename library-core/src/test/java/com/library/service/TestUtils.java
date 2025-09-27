@@ -3,10 +3,13 @@ package com.library.service;
 import java.lang.reflect.Field;
 import java.util.List;
 
+import org.junit.jupiter.api.Disabled;
+
 /**
  * Utility for test code to reset singleton state of Library.
  * Never use in production.
  */
+@Disabled("For education purpose only.")
 public final class TestUtils {
 
     private TestUtils() {
