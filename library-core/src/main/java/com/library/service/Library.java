@@ -13,7 +13,10 @@ import java.util.List;
 // - Concise and clear intent
 // - Cannot be subclassed — sealed by enum nature
 // Compare to: double-checked locking (error-prone), static factory with private constructor (less safe)
-
+/**
+    * @deprecated ( We keep it for now to avoid breaking existing tests, but new features will use LibraryService)
+*/
+@Deprecated(since = "1.0", forRemoval = true)
 public enum Library {
 
     // Item 3: The single enum constant — the one and only instance

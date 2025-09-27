@@ -21,3 +21,11 @@ Item 4 states:
 
 A utility class is a class that contains only static methods and static fields. It should not be instantiated.
 To enforce this, declare a private constructor that throws an exception — making instantiation impossible even via reflection. 
+
+5. library-core/src/test/java/com/library/service/LibraryServiceTest.java
+
+Item 5 states: 
+
+Static utility classes and singletons are inappropriate for classes whose behavior depends on state.
+The Library has mutable state (catalog, members) — so it should not be a singleton.
+DI gives us testability, reusability, and configurability. 

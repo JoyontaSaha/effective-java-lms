@@ -1,0 +1,53 @@
+package com.library.service;
+
+import com.library.core.Book;
+import com.library.core.Member;
+import java.util.ArrayList;
+import java.util.List;
+
+// Item 5: Injectable, stateful service — not a singleton
+// Each instance manages its own catalog and members
+// Enables test isolation without resetForTesting()
+
+// Item 5: Prefer dependency injection over hardcoded singletons
+// Why? Singletons:
+// - Make testing hard (shared state)
+// - Prevent multiple instances (e.g., multi-tenant libraries)
+// - Hide dependencies (not explicit in API)
+// This class is:
+// - Instantiable on demand
+// - State isolated per instance
+// - Injectable into higher-level services (e.g., CheckoutService)
+//
+// Also Item 52: Implements interface — clients depend on abstraction
+public class DefaultLibraryService implements LibraryService {
+
+    private final List<Book> catalog = new ArrayList<>();
+    private final List<Member> members = new ArrayList<>();
+
+    @Override
+    public void registerBook(Book book) {
+        if (book == null) {
+            throw new IllegalArgumentException("Book cannot be null");
+        }
+        catalog.add(book);
+    }
+
+    @Override
+    public void registerMember(Member member) {
+        if (member == null) {
+            throw new IllegalArgumentException("Member cannot be null");
+        }
+        members.add(member);
+    }
+
+    @Override
+    public List<Book> listAllBooks() {
+        return List.copyOf(catalog); // Item 15: defensive copy
+    }
+
+    @Override
+    public List<Member> listAllMembers() {
+        return List.copyOf(members); // Item 15
+    }
+}
