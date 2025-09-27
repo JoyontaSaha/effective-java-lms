@@ -14,3 +14,10 @@ Item 3 recommends enum singleton because:
 Concise, serialization-safe, thread-safe, and reflection-safe
 Prevents multiple instantiation even under serialization or reflection attacks
 JVM guarantees singleton-ness
+
+4. library-core/src/test/java/com/library/util/ValidationUtilTest.java
+
+Item 4 states: 
+
+A utility class is a class that contains only static methods and static fields. It should not be instantiated.
+To enforce this, declare a private constructor that throws an exception — making instantiation impossible even via reflection. 

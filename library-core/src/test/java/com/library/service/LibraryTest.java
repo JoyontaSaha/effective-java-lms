@@ -20,15 +20,9 @@ class LibraryTest {
         Library lib1 = Library.INSTANCE;
         Library lib2 = Library.INSTANCE;
 
-        assertThat(lib1).isSameAs(lib2); // same reference
-        assertThat(lib1).isEqualTo(lib2); // logically equal
-    }
-
-    @Test
-    void shouldNotAllowDirectInstantiation() {
-        // Enum singletons cannot be instantiated via 'new' — compile-time guarantee
-        // No runtime test needed — will not compile if attempted.
-        // We document intent instead.
+        assertThat(lib1)
+            .isSameAs(lib2) // same reference
+         .isEqualTo(lib2); // logically equal
     }
 
     @Test
