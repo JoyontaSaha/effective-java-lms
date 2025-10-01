@@ -33,4 +33,11 @@ DI gives us testability, reusability, and configurability.
 6. library-core/src/test/java/com/library/util/ValidationUtilTest.java
 
 java.util.regex.Pattern is immutable and thread-safe — perfect candidate for reuse (Item 6).
-Compiling a regex is expensive; matching is cheap. 
+Compiling a regex is expensive; matching is cheap.
+
+7. library-core/src/test/java/com/library/core/MemberLoanTest.java
+
+Item 7 warns that "whenever a class manages its own memory, the programmer should be alert for memory leaks."
+A Member managing a list of borrowed books is managing memory — so we must null out or remove obsolete references. 
+In ArrayList, remove() already nulls the last element in the internal array (OpenJDK implementation), so no extra nulling needed.
+But if we used a fixed-size array or stack, we’d need to explicitly null the slot (as in Bloch’s Stack example).
