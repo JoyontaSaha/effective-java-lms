@@ -41,3 +41,11 @@ Item 7 warns that "whenever a class manages its own memory, the programmer shoul
 A Member managing a list of borrowed books is managing memory — so we must null out or remove obsolete references. 
 In ArrayList, remove() already nulls the last element in the internal array (OpenJDK implementation), so no extra nulling needed.
 But if we used a fixed-size array or stack, we’d need to explicitly null the slot (as in Bloch’s Stack example).
+
+8. library-core/src/test/java/com/library/io/ReportWriterTest.java
+
+Item 8 states: 
+
+Finalizers are unpredictable, often dangerous, and unnecessary.
+Cleaners are better but still non-deterministic.
+Explicit cleanup (like close()) is reliable, fast, and clear. 
