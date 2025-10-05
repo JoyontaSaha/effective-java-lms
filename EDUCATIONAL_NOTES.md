@@ -55,3 +55,11 @@ Explicit cleanup (like close()) is reliable, fast, and clear.
 
 In try-finally, if an exception is thrown in the try block and another in finally, the first is lost.
 try-with-resources suppresses secondary exceptions and preserves the primary.
+
+10. library-core/src/test/java/com/library/core/BookTest.java
+    library-core/src/test/java/com/library/core/MemberTest.java
+
+Item 10 states: 
+
+Provide a good toString implementation makes your class more pleasant to use and easier to debug.
+The format should be concise, unambiguous, and include all fields that affect logical equality. 

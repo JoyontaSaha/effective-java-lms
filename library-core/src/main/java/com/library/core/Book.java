@@ -41,9 +41,13 @@ public final class Book {
     public String getAuthor() { return author; }
     public String getIsbn() { return isbn; }
 
-    // Item 10: Always override toString() — coming soon!
+    /**
+     * Returns a string representation of this Book.
+     * Item 10: Includes all significant fields for debugging and logging.
+     * Format: Book{title='...', author='...', isbn='...'}
+    */
     @Override
     public String toString() {
-        return "Book{title='" + title + "', author='" + author + "', isbn='" + isbn + "'}";
+        return String.format("Book{title='%s', author='%s', isbn='%s'}", title, author, isbn);
     }
 }

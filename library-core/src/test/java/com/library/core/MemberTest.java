@@ -53,4 +53,12 @@ class MemberTest {
         // This test is symbolic — will not compile if constructor is public.
         // We’ll rely on code review + SpotBugs later for enforcement.
     }
+
+    @Test
+    void shouldHaveMeaningfulToString() {
+        // Item 10: Member.toString() should include key identifying info
+        Member member = Member.builder().id("M001").name("Alice").email("alice@example.com").build();
+        String expected = "Member{id='M001', name='Alice', email='alice@example.com', phone='null'}";
+        assertThat(member.toString()).isEqualTo(expected);
+    }
 }
