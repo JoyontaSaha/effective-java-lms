@@ -48,4 +48,10 @@ Item 8 states:
 
 Finalizers are unpredictable, often dangerous, and unnecessary.
 Cleaners are better but still non-deterministic.
-Explicit cleanup (like close()) is reliable, fast, and clear. 
+Explicit cleanup (like close()) is reliable, fast, and clear.
+
+9. library-core/src/test/java/com/library/io/TryFinallyDangerDemoTest.java
+   library-core/src/test/java/com/library/io/ReportWriterTest.java
+
+In try-finally, if an exception is thrown in the try block and another in finally, the first is lost.
+try-with-resources suppresses secondary exceptions and preserves the primary.
