@@ -62,4 +62,11 @@ try-with-resources suppresses secondary exceptions and preserves the primary.
 Item 10 states: 
 
 Provide a good toString implementation makes your class more pleasant to use and easier to debug.
-The format should be concise, unambiguous, and include all fields that affect logical equality. 
+The format should be concise, unambiguous, and include all fields that affect logical equality.
+
+11. library-core/src/test/java/com/library/core/BookTest.java
+
+Item 11 states: 
+
+You must override hashCode in every class that overrides equals, or you will violate the general contract for hashCode.
+Violation causes silent bugs in hash-based collections.

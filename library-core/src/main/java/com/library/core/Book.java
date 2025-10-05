@@ -45,9 +45,35 @@ public final class Book {
      * Returns a string representation of this Book.
      * Item 10: Includes all significant fields for debugging and logging.
      * Format: Book{title='...', author='...', isbn='...'}
-    */
+     */
     @Override
     public String toString() {
         return String.format("Book{title='%s', author='%s', isbn='%s'}", title, author, isbn);
+    }
+
+    /**
+     * Compares this book to another for equality.
+     * Item 11: Two books are equal if their ISBNs are equal.
+     * This ensures correct behavior in hash-based collections.
+     *
+     * @return {@code true} if ISBNs match, {@code false} otherwise
+     */
+    @Override
+    public boolean equals(Object o) {
+        // Item 11: Standard equals implementation
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return isbn.equals(book.isbn); // ISBN is non-null (validated at creation)
+    }
+
+    /**
+     * Returns a hash code based on the ISBN.
+     * Item 11: Consistent with equals() — equal books have equal hash codes.
+     */
+    @Override
+    public int hashCode() {
+        // Item 11: hashCode consistent with equals — based on ISBN
+        return isbn.hashCode();
     }
 }
