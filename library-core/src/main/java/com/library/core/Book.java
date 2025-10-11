@@ -1,5 +1,7 @@
 package com.library.core;
 
+import java.util.Comparator;
+
 // Item 1: Static factory preferred over public constructor
 // Benefits:
 // 1. Named creation method (create vs new Book(...))
@@ -7,7 +9,8 @@ package com.library.core;
 // 3. Enforces validation before construction
 // 4. Hides constructor — clients cannot bypass factory logic
 
-public final class Book {
+// Item 12: Implement Comparable with natural ordering consistent with equals()
+public final class Book implements Comparable<Book> {
 
     // Item 17 (foreshadowed): Fields are final → immutable object
     private final String title;
@@ -42,16 +45,6 @@ public final class Book {
     public String getIsbn() { return isbn; }
 
     /**
-     * Returns a string representation of this Book.
-     * Item 10: Includes all significant fields for debugging and logging.
-     * Format: Book{title='...', author='...', isbn='...'}
-     */
-    @Override
-    public String toString() {
-        return String.format("Book{title='%s', author='%s', isbn='%s'}", title, author, isbn);
-    }
-
-    /**
      * Compares this book to another for equality.
      * Item 11: Two books are equal if their ISBNs are equal.
      * This ensures correct behavior in hash-based collections.
@@ -75,5 +68,33 @@ public final class Book {
     public int hashCode() {
         // Item 11: hashCode consistent with equals — based on ISBN
         return isbn.hashCode();
+    }
+
+    /**
+     * Compares this book to another by ISBN.
+     * Item 12: Consistent with equals() — ensures correct behavior in sorted collections.
+     * Note: Natural ordering is by ISBN (not title) to maintain consistency with equals().
+     */
+    @Override
+    public int compareTo(Book other) {
+        // Item 12: Fully consistent with equals() — compare by ISBN only
+        // This ensures (x.compareTo(y) == 0) == x.equals(y)
+        return this.isbn.compareTo(other.isbn);
+    }
+
+    // Item 12: For UI/display purposes, use this comparator — not compareTo()
+    public static final Comparator<Book> BY_TITLE_THEN_AUTHOR = 
+    Comparator.comparing(Book::getTitle)
+            .thenComparing(Book::getAuthor)
+            .thenComparing(Book::getIsbn);
+
+    /**
+     * Returns a string representation of this Book.
+     * Item 10: Includes all significant fields for debugging and logging.
+     * Format: Book{title='...', author='...', isbn='...'}
+     */
+    @Override
+    public String toString() {
+        return String.format("Book{title='%s', author='%s', isbn='%s'}", title, author, isbn);
     }
 }

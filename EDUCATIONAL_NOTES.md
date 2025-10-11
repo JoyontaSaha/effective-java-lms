@@ -70,3 +70,9 @@ Item 11 states:
 
 You must override hashCode in every class that overrides equals, or you will violate the general contract for hashCode.
 Violation causes silent bugs in hash-based collections.
+
+12. library-core/src/test/java/com/library/core/BookTest.java
+
+Item 12 warns: 
+
+The relation enforced by compareTo should be consistent with equals… violating this can cause strange behavior in sorted collections.

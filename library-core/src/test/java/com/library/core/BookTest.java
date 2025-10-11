@@ -5,6 +5,10 @@ import static org.assertj.core.api.Assertions.*;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
+import java.util.Arrays;
+import java.util.List;
 
 class BookTest {
 
@@ -82,5 +86,58 @@ class BookTest {
 
         // Non-nullity
         assertThat(book).isNotEqualTo(null);
+    }
+
+    @Test
+    void shouldProvideComparatorForTitleBasedSorting() {
+        // Item 12: Natural display ordering via static comparator (not compareTo)
+        Book bookA = Book.create("Java", "Author A", "111");
+        Book bookB = Book.create("Java", "Author B", "222");
+        Book bookC = Book.create("Kotlin", "Author A", "333");
+    
+        List<Book> books = Arrays.asList(bookC, bookB, bookA);
+        books.sort(Book.BY_TITLE_THEN_AUTHOR);
+    
+        assertThat(books).containsExactly(bookA, bookB, bookC);
+    }
+    
+    @Test
+    void shouldHaveCompareToConsistentWithEquals() {
+        Book book1 = Book.create("Effective Java", "Joshua Bloch", "978-0134685991");
+        Book book2 = Book.create("Effective Java Vol 2", "Joshua Bloch", "978-0134685991"); // same ISBN
+    
+        // Equal by ISBN → must be equal and compareTo == 0
+        assertThat(book1.equals(book2)).isTrue();
+        assertThat(book1.compareTo(book2)).isEqualTo(0);
+    
+        // Different ISBN → not equal and compareTo != 0
+        Book book3 = Book.create("Clean Code", "Robert Martin", "123");
+        assertThat(book1.equals(book3)).isFalse();
+        assertThat(book1.compareTo(book3)).isNotEqualTo(0);
+    }
+    
+    @Test
+    void shouldWorkInTreeSetWithConsistentOrdering() {
+        // Item 12: TreeSet relies on compareTo() — consistency avoids bugs
+        SortedSet<Book> sortedCatalog = new TreeSet<>();
+        Book book1 = Book.create("Java", "Author", "111");
+        Book book2 = Book.create("Java", "Author", "111"); // same ISBN
+    
+        sortedCatalog.add(book1);
+        sortedCatalog.add(book2);
+    
+        assertThat(sortedCatalog).hasSize(1); // duplicate removed via compareTo()
+    }
+
+    @Test
+    void shouldWorkInTreeSetWithNoDuplicates() {
+        SortedSet<Book> catalog = new TreeSet<>();
+        Book book1 = Book.create("Effective Java", "Joshua Bloch", "978-0134685991");
+        Book book2 = Book.create("Effective Java Vol 2", "Joshua Bloch", "978-0134685991"); // same ISBN
+
+        catalog.add(book1);
+        catalog.add(book2);
+
+        assertThat(catalog).hasSize(1); // duplicate removed via compareTo() == 0
     }
 }
