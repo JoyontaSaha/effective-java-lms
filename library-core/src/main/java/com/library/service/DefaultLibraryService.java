@@ -20,7 +20,7 @@ import java.util.List;
 // - Injectable into higher-level services (e.g., CheckoutService)
 //
 // Also Item 52: Implements interface — clients depend on abstraction
-public class DefaultLibraryService implements LibraryService {
+class DefaultLibraryService implements LibraryService {
 
     private final List<Book> catalog = new ArrayList<>();
     private final List<Member> members = new ArrayList<>();

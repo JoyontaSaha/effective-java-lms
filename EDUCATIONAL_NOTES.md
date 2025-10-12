@@ -76,3 +76,8 @@ Violation causes silent bugs in hash-based collections.
 Item 12 warns: 
 
 The relation enforced by compareTo should be consistent with equals… violating this can cause strange behavior in sorted collections.
+
+13. library-core/src/main/java/com/library/service/DefaultLibraryService.java
+    library-core/src/main/java/com/library/core/Member.java
+
+Make each class or member as inaccessible as possible.

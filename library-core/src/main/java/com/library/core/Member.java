@@ -1,6 +1,5 @@
 package com.library.core;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 // Item 2: Builder Pattern — when constructor has many parameters (esp. optional ones)
@@ -42,6 +41,8 @@ public final class Member {
 
     // Item 2: Builder is static nested class — has access to private constructor
     // Follows Bloch’s recommended structure
+    // Item 2 + Item 13: Builder is public because it's part of the intended fluent API
+    // Minimizing accessibility doesn't mean hiding essential API surface
     public static class Builder {
         private String id;
         private String name;

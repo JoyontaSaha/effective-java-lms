@@ -38,7 +38,7 @@ public class ReportWriter implements AutoCloseable {
         Objects.requireNonNull(book, "book must not be null");
         Objects.requireNonNull(member, "member must not be null");
 
-        String line = String.format("%s,%s,%s,%s\n",
+        String line = String.format("%s,%s,%s,%s%n",
                 book.getTitle(),
                 book.getAuthor(),
                 book.getIsbn(),
