@@ -81,3 +81,15 @@ The relation enforced by compareTo should be consistent with equals… violating
     library-core/src/main/java/com/library/core/Member.java
 
 Make each class or member as inaccessible as possible.
+
+14. library-core/src/test/java/com/library/architecture/ArchitectureTest.java
+    library-core/src/test/java/com/library/core/PublicClassFieldTest.java
+
+In public classes, use accessor methods, not public fields.
+
+Item 14 permits public static final fields because they are true constants — they don’t break encapsulation or prevent evolution.
+
+However, ensure the referenced object is immutable: 
+
+✅ String, Integer, stateless Comparator → safe
+❌ Mutable object (e.g., public static final List = new ArrayList()) → dangerous

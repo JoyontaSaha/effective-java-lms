@@ -4,7 +4,7 @@ import com.tngtech.archunit.core.domain.JavaClasses;
 import com.tngtech.archunit.junit.AnalyzeClasses;
 import com.tngtech.archunit.junit.ArchTest;
 
-import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noClasses;
+import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.*;
 
 @AnalyzeClasses(packages = "com.library")
 public class ArchitectureTest {
@@ -16,5 +16,14 @@ public class ArchitectureTest {
             .and().haveSimpleNameContaining("Default")
             .should().bePublic()
             .check(classes);
+    }
+
+    @ArchTest
+    void publicClassesShouldNotHavePublicFields(JavaClasses classes) {
+        noFields()
+            .that().arePublic()
+            .and().areNotStatic()
+            .and().areNotFinal()
+            .should().beDeclaredInClassesThat().arePublic();
     }
 }

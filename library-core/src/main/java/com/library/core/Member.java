@@ -12,6 +12,8 @@ import java.util.List;
 // Item 7: This class manages its own memory (borrowedBooks list)
 // Therefore, we must eliminate obsolete references when books are returned.
 // Failure to do so would cause memory leaks — books couldn't be GC'd even if unused elsewhere.
+// Item 14: No public fields — all state accessed via methods.
+// Ensures binary compatibility and encapsulation.
 
 public final class Member {
 

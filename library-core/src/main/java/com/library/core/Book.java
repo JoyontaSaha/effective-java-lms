@@ -10,6 +10,8 @@ import java.util.Comparator;
 // 4. Hides constructor — clients cannot bypass factory logic
 
 // Item 12: Implement Comparable with natural ordering consistent with equals()
+// Item 14: All fields are private — accessed via getter methods.
+// This preserves encapsulation and allows future evolution (e.g., computed fields).
 public final class Book implements Comparable<Book> {
 
     // Item 17 (foreshadowed): Fields are final → immutable object
