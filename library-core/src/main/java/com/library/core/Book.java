@@ -12,6 +12,10 @@ import java.util.Comparator;
 // Item 12: Implement Comparable with natural ordering consistent with equals()
 // Item 14: All fields are private — accessed via getter methods.
 // This preserves encapsulation and allows future evolution (e.g., computed fields).
+// Item 15: Item 13/EJ.3e:: Does NOT implement Cloneable or clone().
+// Reason: clone() is broken; immutable objects don't need copying.
+// If a copy is needed (e.g., for mutable wrappers), use Book.create(...).
+// For immutable objects like Book, copying is unnecessary — just share the instance.
 public final class Book implements Comparable<Book> {
 
     // Item 17 (foreshadowed): Fields are final → immutable object

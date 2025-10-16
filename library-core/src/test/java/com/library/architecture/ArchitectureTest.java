@@ -26,4 +26,11 @@ public class ArchitectureTest {
             .and().areNotFinal()
             .should().beDeclaredInClassesThat().arePublic();
     }
+
+    @ArchTest
+    void noCloneMethodShouldExist(JavaClasses classes) {
+        noMethods()
+            .should().haveName("clone")
+            .check(classes);
+    }
 }

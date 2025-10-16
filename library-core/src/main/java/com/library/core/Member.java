@@ -14,7 +14,7 @@ import java.util.List;
 // Failure to do so would cause memory leaks — books couldn't be GC'd even if unused elsewhere.
 // Item 14: No public fields — all state accessed via methods.
 // Ensures binary compatibility and encapsulation.
-
+// Item 15: Item 13/EJ.3e:: Does NOT implement clone() — use Member.builder() to copy if needed
 public final class Member {
 
     // Item 17: All fields final → immutable object

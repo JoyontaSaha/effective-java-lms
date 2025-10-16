@@ -1,13 +1,19 @@
-1. library-core/src/test/java/com/library/core/BookTest.java
+1. Consider static factory methods instead of constructors 
+
+    library-core/src/test/java/com/library/core/BookTest.java
 
 We’re testing the intent of Item 1 — static factories provide controlled instantiation, better naming, and future flexibility (e.g., caching, subtype return).
 
-2. library-core/src/test/java/com/library/core/MemberTest.java
+2. Consider a builder when faced with many constructor parameters 
+
+    library-core/src/test/java/com/library/core/MemberTest.java
 
 Builder pattern (Item 2) shines when you have optional parameters and want readable, fluent construction.
 We enforce required fields at build-time, not construction-time — safer and clearer.
 
-3. library-core/src/test/java/com/library/service/LibraryTest.java
+3. Enforce the singleton property with a private constructor or an enum type 
+
+    library-core/src/test/java/com/library/service/LibraryTest.java
 
 Item 3 recommends enum singleton because: 
 
@@ -15,14 +21,18 @@ Concise, serialization-safe, thread-safe, and reflection-safe
 Prevents multiple instantiation even under serialization or reflection attacks
 JVM guarantees singleton-ness
 
-4. library-core/src/test/java/com/library/util/ValidationUtilTest.java
+4. Enforce noninstantiability with a private constructor
+
+    library-core/src/test/java/com/library/util/ValidationUtilTest.java
 
 Item 4 states: 
 
 A utility class is a class that contains only static methods and static fields. It should not be instantiated.
 To enforce this, declare a private constructor that throws an exception — making instantiation impossible even via reflection. 
 
-5. library-core/src/test/java/com/library/service/LibraryServiceTest.java
+5. Prefer dependency injection to hardwiring resources
+
+    library-core/src/test/java/com/library/service/LibraryServiceTest.java
 
 Item 5 states: 
 
@@ -30,19 +40,25 @@ Static utility classes and singletons are inappropriate for classes whose behavi
 The Library has mutable state (catalog, members) — so it should not be a singleton.
 DI gives us testability, reusability, and configurability.
 
-6. library-core/src/test/java/com/library/util/ValidationUtilTest.java
+6. Avoid creating unnecessary objects
+
+    library-core/src/test/java/com/library/util/ValidationUtilTest.java
 
 java.util.regex.Pattern is immutable and thread-safe — perfect candidate for reuse (Item 6).
 Compiling a regex is expensive; matching is cheap.
 
-7. library-core/src/test/java/com/library/core/MemberLoanTest.java
+7. Eliminate obsolete object references
+
+    library-core/src/test/java/com/library/core/MemberLoanTest.java
 
 Item 7 warns that "whenever a class manages its own memory, the programmer should be alert for memory leaks."
 A Member managing a list of borrowed books is managing memory — so we must null out or remove obsolete references. 
 In ArrayList, remove() already nulls the last element in the internal array (OpenJDK implementation), so no extra nulling needed.
 But if we used a fixed-size array or stack, we’d need to explicitly null the slot (as in Bloch’s Stack example).
 
-8. library-core/src/test/java/com/library/io/ReportWriterTest.java
+8. Avoid finalizers and cleaners
+
+    library-core/src/test/java/com/library/io/ReportWriterTest.java
 
 Item 8 states: 
 
@@ -50,13 +66,17 @@ Finalizers are unpredictable, often dangerous, and unnecessary.
 Cleaners are better but still non-deterministic.
 Explicit cleanup (like close()) is reliable, fast, and clear.
 
-9. library-core/src/test/java/com/library/io/TryFinallyDangerDemoTest.java
+9. Prefer try-with-resources to try-finally
+
+   library-core/src/test/java/com/library/io/TryFinallyDangerDemoTest.java
    library-core/src/test/java/com/library/io/ReportWriterTest.java
 
 In try-finally, if an exception is thrown in the try block and another in finally, the first is lost.
 try-with-resources suppresses secondary exceptions and preserves the primary.
 
-10. library-core/src/test/java/com/library/core/BookTest.java
+10. Always override toString [Correction: Item 13 in Effective Java 3e]
+    
+    library-core/src/test/java/com/library/core/BookTest.java
     library-core/src/test/java/com/library/core/MemberTest.java
 
 Item 10 states: 
@@ -64,25 +84,37 @@ Item 10 states:
 Provide a good toString implementation makes your class more pleasant to use and easier to debug.
 The format should be concise, unambiguous, and include all fields that affect logical equality.
 
-11. library-core/src/test/java/com/library/core/BookTest.java
+11. Obey the general contract when overriding equals [Correction: Item 10 in Effective Java 3e]
+
+    Always override hashCode when you override equals [Correction: Item 11 in Effective Java 3e]
+
+    library-core/src/test/java/com/library/core/BookTest.java
 
 Item 11 states: 
 
 You must override hashCode in every class that overrides equals, or you will violate the general contract for hashCode.
 Violation causes silent bugs in hash-based collections.
 
-12. library-core/src/test/java/com/library/core/BookTest.java
+12. Consider implementing Comparable [Correction: Item 14 in Effective Java 3e]
+
+    Always override `compareTo consistently with `equals` when implementing `Comparable`
+
+    library-core/src/test/java/com/library/core/BookTest.java
 
 Item 12 warns: 
 
 The relation enforced by compareTo should be consistent with equals… violating this can cause strange behavior in sorted collections.
 
-13. library-core/src/main/java/com/library/service/DefaultLibraryService.java
+13. Minimize the accessibility of classes and members [Correction: Item 15 in Effective Java 3e]
+    
+    library-core/src/main/java/com/library/service/DefaultLibraryService.java
     library-core/src/main/java/com/library/core/Member.java
 
 Make each class or member as inaccessible as possible.
 
-14. library-core/src/test/java/com/library/architecture/ArchitectureTest.java
+14. In public classes, use accessor methods, not public fields [Correction: Item 16 in Effective Java 3e]
+
+    library-core/src/test/java/com/library/architecture/ArchitectureTest.java
     library-core/src/test/java/com/library/core/PublicClassFieldTest.java
 
 In public classes, use accessor methods, not public fields.
@@ -93,3 +125,12 @@ However, ensure the referenced object is immutable:
 
 ✅ String, Integer, stateless Comparator → safe
 ❌ Mutable object (e.g., public static final List = new ArrayList()) → dangerous
+
+15. Override clone judiciously [Correction: Item 13 in Effective Java 3e]
+    
+    library-core/src/test/java/com/library/core/CloneTest.java
+
+Since Book is immutable, cloning is unnecessary — clients can safely share instances.
+For mutable objects, copy factories (from(Book other)) are preferred.
+
+The Cloneable interface is a mistake.
