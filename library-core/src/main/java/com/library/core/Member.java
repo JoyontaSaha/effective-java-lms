@@ -15,6 +15,12 @@ import java.util.List;
 // Item 14: No public fields — all state accessed via methods.
 // Ensures binary compatibility and encapsulation.
 // Item 15: Item 13/EJ.3e:: Does NOT implement clone() — use Member.builder() to copy if needed
+
+// Item 17: Minimize mutability — core identity (id, name, etc.) is immutable.
+// Mutable state (borrowedBooks) is encapsulated and defensively copied.
+// This is acceptable because:
+// - Member must track changing loans
+// - Identity remains stable for hashing/equality
 public final class Member {
 
     // Item 17: All fields final → immutable object

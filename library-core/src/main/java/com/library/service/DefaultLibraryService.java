@@ -18,8 +18,14 @@ import java.util.List;
 // - Instantiable on demand
 // - State isolated per instance
 // - Injectable into higher-level services (e.g., CheckoutService)
-//
+
 // Also Item 52: Implements interface — clients depend on abstraction
+// Mutable service class — state (catalog, members) changes over time. 
+
+// Item 17: Mutability is justified because:
+// - Library state evolves (books added, members registered)
+// - Not a value object — represents a live system
+// - Clients should not share instances (unlike Book/Member identity)
 class DefaultLibraryService implements LibraryService {
 
     private final List<Book> catalog = new ArrayList<>();

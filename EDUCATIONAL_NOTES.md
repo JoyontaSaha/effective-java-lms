@@ -134,3 +134,11 @@ Since Book is immutable, cloning is unnecessary — clients can safely share ins
 For mutable objects, copy factories (from(Book other)) are preferred.
 
 The Cloneable interface is a mistake.
+
+16. Go to 14
+
+17. Minimize mutability by ensuring classes are immutable whenever possible, and justifying mutability when necessary. 
+
+    library-core/src/test/java/com/library/core/ImmutabilityTest.java
+
+    Immutable objects are simple, thread-safe, and can be shared freely.

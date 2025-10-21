@@ -16,6 +16,9 @@ import java.util.Comparator;
 // Reason: clone() is broken; immutable objects don't need copying.
 // If a copy is needed (e.g., for mutable wrappers), use Book.create(...).
 // For immutable objects like Book, copying is unnecessary — just share the instance.
+
+// Item 17: Fully immutable — all fields final, no setters, class final.
+// Safe to share, thread-safe, and failure-atomic.
 public final class Book implements Comparable<Book> {
 
     // Item 17 (foreshadowed): Fields are final → immutable object
