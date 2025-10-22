@@ -142,3 +142,16 @@ The Cloneable interface is a mistake.
     library-core/src/test/java/com/library/core/ImmutabilityTest.java
 
     Immutable objects are simple, thread-safe, and can be shared freely.
+
+18. Favor composition over inheritance
+
+    Favor composition over inheritance” to avoid the fragility of inheritance-based designs.
+
+    library-core/src/test/java/com/library/service/InstrumentedLibraryServiceTest.java
+    library-core/src/test/java/com/library/util/CompositionOverInheritanceTest.java
+    
+    HashSet.addAll() internally calls add() — so overriding both breaks counting.
+
+    Inheritance is a powerful way to achieve code reuse, but it is often misused.
+
+     “Has-a” relationship is more honest than “is-a”.
