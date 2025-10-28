@@ -155,3 +155,15 @@ The Cloneable interface is a mistake.
     Inheritance is a powerful way to achieve code reuse, but it is often misused.
 
      “Has-a” relationship is more honest than “is-a”.
+
+19. Design and document for inheritance or else prohibit it.
+
+    library-core/src/test/java/com/library/service/InheritanceTest.java
+
+    Inheritance is fragile unless the superclass was explicitly designed to be extended.
+
+    Rule: If a class is not final, it must be documented as safe for inheritance — otherwise, make it final.
+
+    The designer of a class must decide whether to allow inheritance.
+
+    If in doubt, leave it out.— Make it final.

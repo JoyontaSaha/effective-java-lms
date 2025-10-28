@@ -13,7 +13,9 @@ import java.util.Objects;
 // Item 1: Use static factory for clearer, extensible creation
 // Item 49: Validate parameters explicitly and fail fast
 // Item 9: ALWAYS use try-with-resources for AutoCloseable. Never use try-finally — it is verbose, error-prone, and loses exceptions.
-public class ReportWriter implements AutoCloseable {
+// Item 19: Final class — not designed for inheritance.
+// Use composition (e.g., wrap in another writer) if extension is needed.
+public final class ReportWriter implements AutoCloseable {
 
     private final BufferedWriter writer;
 

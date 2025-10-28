@@ -26,7 +26,10 @@ import java.util.List;
 // - Library state evolves (books added, members registered)
 // - Not a value object — represents a live system
 // - Clients should not share instances (unlike Book/Member identity)
-class DefaultLibraryService implements LibraryService {
+
+// Item 19: Final and package-private — not designed for inheritance.
+// Clients should depend on LibraryService interface.
+final class DefaultLibraryService implements LibraryService {
 
     private final List<Book> catalog = new ArrayList<>();
     private final List<Member> members = new ArrayList<>();

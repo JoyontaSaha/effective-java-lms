@@ -8,7 +8,8 @@ import java.util.List;
 
 // Item 18: Favor composition over inheritance
 // Wraps a LibraryService instead of extending it
-public class InstrumentedLibraryService implements LibraryService {
+// Item 19: Final class — use composition to add behavior, not inheritance.
+public final class InstrumentedLibraryService implements LibraryService {
 
     private final LibraryService delegate;
     private int bookRegistrationCount = 0;
