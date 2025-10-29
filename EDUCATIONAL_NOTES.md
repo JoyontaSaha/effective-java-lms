@@ -167,3 +167,11 @@ The Cloneable interface is a mistake.
     The designer of a class must decide whether to allow inheritance.
 
     If in doubt, leave it out.— Make it final.
+
+20. Prefer interfaces to abstract classes
+
+    library-core/src/test/java/com/library/io/ReportExporterTest.java
+
+    Interfaces are more flexible than abstract classes.
+
+    Define types with interfaces. Share code with static methods or composition.
