@@ -5,8 +5,6 @@ import com.library.core.Member;
 import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.io.StringWriter;
-import java.io.Writer;
-
 import static org.assertj.core.api.Assertions.*;
 
 class ReportExporterTest {

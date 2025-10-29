@@ -15,7 +15,7 @@ public final class CsvReportExporter implements ReportExporter {
 
     @Override
     public void exportLoan(Writer writer, Book book, Member member) throws IOException {
-        String line = String.format("%s,%s,%s,%s\n",
+        String line = String.format("%s,%s,%s,%s%n",
                 book.getTitle(),
                 book.getAuthor(),
                 book.getIsbn(),
