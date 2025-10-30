@@ -175,3 +175,15 @@ The Cloneable interface is a mistake.
     Interfaces are more flexible than abstract classes.
 
     Define types with interfaces. Share code with static methods or composition.
+
+21. Design interfaces for posterity
+
+    library-core/src/test/java/com/library/io/InterfacePosterityTest.java
+
+    Interfaces are forever. Once published, you cannot remove or change methods without breaking clients.
+
+    When you release an interface, you’re making a contract with clients that you can’t break.
+
+    If you’re not sure, leave it out. You can always add, but never remove.
+
+    An interface is a promise — make it one you can keep forever.
