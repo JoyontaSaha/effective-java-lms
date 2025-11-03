@@ -187,3 +187,17 @@ The Cloneable interface is a mistake.
     If you’re not sure, leave it out. You can always add, but never remove.
 
     An interface is a promise — make it one you can keep forever.
+
+22. Use interfaces only to define types
+    
+    library-core/src/test/java/com/library/architecture/InterfaceDesignTest.java
+    library-core/src/test/java/com/library/util/ConstantsInterfaceTest.java
+    
+    Every interface should answer the question: “What can objects of this type do?”
+    If it doesn’t define a type, it’s a misuse.
+
+    An interface should describe what instances of the class can do — not just hold constants.
+
+    If your interface has no abstract methods, it’s not defining a type — it’s misused.
+
+    An interface is a verb, not a noun. 
