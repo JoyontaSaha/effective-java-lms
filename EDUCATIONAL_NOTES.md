@@ -200,4 +200,17 @@ The Cloneable interface is a mistake.
 
     If your interface has no abstract methods, it’s not defining a type — it’s misused.
 
-    An interface is a verb, not a noun. 
+    An interface is a verb, not a noun.
+
+23. Prefer class hierarchies to tagged classes
+
+    library-core/src/test/java/com/library/domain/TaggedClassTest.java
+
+    Tagged classes are a verbose, error-prone, and inefficient way to mimic class hierarchies.
+
+    Tagged class uses switch and a format tag
+    Class hierarchy uses polymorphism — no tags, no switches
+
+    If you’re writing a switch on a type tag — use a class hierarchy instead. 
+
+    
