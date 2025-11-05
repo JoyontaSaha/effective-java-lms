@@ -213,4 +213,14 @@ The Cloneable interface is a mistake.
 
     If you’re writing a switch on a type tag — use a class hierarchy instead. 
 
-    
+24. Favor static member classes over nonstatic
+
+    library-core/src/test/java/com/library/architecture/StaticMemberClassTest.java
+
+    Non-static inner classes carry a hidden reference to the outer instance — wasting memory and causing leaks if the inner class outlives the outer.
+
+    Always declare member classes as static unless they explicitly use Outer.this
+
+    A non-static member class silently carries a reference to its enclosing instance.
+
+    If in doubt, make it static.

@@ -51,6 +51,8 @@ public final class Member {
     // Follows Bloch’s recommended structure
     // Item 2 + Item 13: Builder is public because it's part of the intended fluent API
     // Minimizing accessibility doesn't mean hiding essential API surface
+    // Item 24: Static member class — does not need access to Member instance.
+    // Reduces memory overhead and prevents accidental outer instance capture.
     public static class Builder {
         private String id;
         private String name;
