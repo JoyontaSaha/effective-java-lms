@@ -224,3 +224,13 @@ The Cloneable interface is a mistake.
     A non-static member class silently carries a reference to its enclosing instance.
 
     If in doubt, make it static.
+
+25. Prefer generic types
+
+    library-core/src/test/java/com/library/util/PairTest.java
+
+    Generics provide compile-time type safety, prevent ClassCastException, eliminate casts and runtime errors, and make code self-documenting.
+
+    If you’re casting, you probably need generics.
+
+    Generics: because ClassCastException is a design smell.
