@@ -234,3 +234,14 @@ The Cloneable interface is a mistake.
     If you’re casting, you probably need generics.
 
     Generics: because ClassCastException is a design smell.
+
+26. Don’t use raw types
+
+    library-core/src/test/java/com/library/architecture/NoRawTypesTest.java
+
+    Raw types opt you out of compile-time type safety, making your code vulnerable to ClassCastException — the very problem generics were designed to solve.
+
+    The use of raw types violates the guarantees of the generic type system.
+
+    If you’re casting, you’re doing it wrong.
+        — Use generics instead.
