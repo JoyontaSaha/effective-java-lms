@@ -263,3 +263,35 @@ The Cloneable interface is a mistake.
             - You document why
             
     Fix, don’t suppress — unless you can prove safety.
+
+28. Prefer lists to arrays
+
+    library-core/src/test/java/com/library/util/ListsVsArraysTest.java
+
+    Arrays are covariant and reified — a dangerous combination that breaks type safety, while List is invariant and type-safe. 
+
+    Arrays and generics don’t mix well.
+
+    Ensure that:
+    - Arrays are avoided in public APIs
+    - List (or other collections) are used instead
+    - Arrays are only used internally when necessary (e.g., for performance)
+
+    Arrays fail at runtime
+    Lists fail at compile time
+    Varargs are arrays — handle with care (Item 32)
+
+    Problems with Arrays -
+        Covariant subtyping → runtime errors
+        Reified types → ArrayStoreException
+        No generics support → can’t have List<Book>[]
+        Fixed size → less flexible
+
+Benefits of Lists -
+    Invariant typing → compile-time safety
+    Generic-friendly
+    Resizable
+    Rich API (stream(), removeIf(), etc.)
+
+Rule of Thumb
+    - Use arrays only in performance-critical internals — never in APIs.  
