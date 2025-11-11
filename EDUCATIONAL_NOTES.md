@@ -245,3 +245,21 @@ The Cloneable interface is a mistake.
 
     If you’re casting, you’re doing it wrong.
         — Use generics instead.
+
+27. Eliminate unchecked warnings
+
+    library-core/src/test/java/com/library/util/UncheckedWarningDemoTest.java
+
+    Unchecked warnings indicate potential ClassCastException at runtime — they must be either: 
+        - Fixed (preferred), or
+        - Suppressed with proof of safety
+
+    Every unchecked warning represents the possibility of a ClassCastException at runtime.
+
+    When to Suppress
+        Only if:
+            - You’ve proven the cast is safe
+            - There’s no alternative
+            - You document why
+            
+    Fix, don’t suppress — unless you can prove safety.
