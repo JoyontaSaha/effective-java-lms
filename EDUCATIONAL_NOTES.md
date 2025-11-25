@@ -294,4 +294,12 @@ Benefits of Lists -
     Rich API (stream(), removeIf(), etc.)
 
 Rule of Thumb
-    - Use arrays only in performance-critical internals — never in APIs.  
+    - Use arrays only in performance-critical internals — never in APIs.
+
+29. Item 29: Favor generic types
+
+     library-core/src/test/java/com/library/util/CatalogTest.java
+
+     Generic types are safer, easier to use, and more expressive than raw types.
+
+     If your class operates on a type, make the class generic — don’t stop halfway.
