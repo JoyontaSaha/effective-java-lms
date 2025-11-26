@@ -303,3 +303,14 @@ Rule of Thumb
      Generic types are safer, easier to use, and more expressive than raw types.
 
      If your class operates on a type, make the class generic — don’t stop halfway.
+
+
+30. Item 30: Favor generic methods
+
+    library-core/src/test/java/com/library/util/GenericMethodsTest.java
+
+    A generic method can serve all types with one implementation — no duplication, no casts.
+
+    Generic methods, like generic types, are safer and easier to use than their non-generic counterparts.
+
+    If a method’s functionality is independent of the class’s type, make it a generic static method. 
