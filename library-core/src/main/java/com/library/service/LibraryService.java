@@ -11,4 +11,6 @@ public interface LibraryService {
     void registerMember(Member member);
     List<Book> listAllBooks();
     List<Member> listAllMembers();
+    // Item 31: Add flexible bulk registration
+    void registerAllBooks(List<? extends Book> books);
 }

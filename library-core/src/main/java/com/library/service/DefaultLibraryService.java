@@ -4,6 +4,7 @@ import com.library.core.Book;
 import com.library.core.Member;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 // Item 5: Injectable, stateful service — not a singleton
 // Each instance manages its own catalog and members
@@ -40,6 +41,14 @@ final class DefaultLibraryService implements LibraryService {
             throw new IllegalArgumentException("Book cannot be null");
         }
         catalog.add(book);
+    }
+
+    @Override
+    public void registerAllBooks(List<? extends Book> books) {
+        Objects.requireNonNull(books);
+        for (Book book : books) {
+            registerBook(book); // Book is upper bound — safe
+        }
     }
 
     @Override

@@ -313,4 +313,18 @@ Rule of Thumb
 
     Generic methods, like generic types, are safer and easier to use than their non-generic counterparts.
 
-    If a method’s functionality is independent of the class’s type, make it a generic static method. 
+    If a method’s functionality is independent of the class’s type, make it a generic static method.
+
+31. Item 31: Use bounded wildcards to increase API flexibility
+
+    library-core/src/test/java/com/library/util/WildcardTest.java
+
+    Bounded wildcards make APIs more flexible, but they come with a cost in complexity.
+
+    Input-only (producer) -> ? extends T
+    Output-only (consumer) -> ? super T
+    Input and output -> T (no wildcard)
+
+    Use wildcards only in parameter types — and only when flexibility is needed.
+
+    When a class is final and immutable (Item 17, 19), inheritance is prohibited — composition and wildcards become even more important.

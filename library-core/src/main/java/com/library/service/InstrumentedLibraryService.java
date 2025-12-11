@@ -49,4 +49,13 @@ public final class InstrumentedLibraryService implements LibraryService {
     public int getMemberRegistrationCount() {
         return memberRegistrationCount;
     }
+
+    @Override
+    public void registerAllBooks(List<? extends Book> books) {
+        // Item 31: Delegate to delegate, count each book
+        for (Book book : books) {
+            bookRegistrationCount++;
+        }
+        delegate.registerAllBooks(books);
+    }
 }
